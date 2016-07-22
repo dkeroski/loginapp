@@ -2,11 +2,6 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 
-mongoose.connect('mongodb://localhost/loginapp');
-
-var db = mongoose.connection;
-
-
 var UserSchema = mongoose.Schema({
     username: {
         type: String,
@@ -34,3 +29,22 @@ module.exports.createUser = function(newUser, callback) {
         });
     });
 }
+
+module.exports.getUserByUsername = function(username, callback) {
+    var query = {
+        username: username
+    };
+    User.findOne(query, callback);
+}
+
+module.exports.getUserById = function(id, callback){
+  User.findById(id,callback);
+}
+
+module.exports.comparePassword = function(userPassword, hash, callback) {
+    bcrypt.compare(userPassword, hash, function(err, isMatch) {
+        if(err) throw err;
+          callback(null,isMatch);
+        
+    });
+  }
