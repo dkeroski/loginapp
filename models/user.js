@@ -21,6 +21,7 @@ var UserSchema = mongoose.Schema({
 
 var User = module.exports = mongoose.model('User', UserSchema);
 
+//iskopirana od dokumentacija bcryptjs heshiranje na password
 module.exports.createUser = function(newUser, callback) {
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(newUser.password, salt, function(err, hash) {
@@ -45,6 +46,5 @@ module.exports.comparePassword = function(userPassword, hash, callback) {
     bcrypt.compare(userPassword, hash, function(err, isMatch) {
         if(err) throw err;
           callback(null,isMatch);
-        
     });
   }
