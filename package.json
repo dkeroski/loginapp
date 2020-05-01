@@ -4,7 +4,9 @@
   "description": "Simple application",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Parmakova",
   "license": "ISC",
@@ -22,6 +24,8 @@
     "mongoose": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
-  }
+    "passport-local": "*",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
